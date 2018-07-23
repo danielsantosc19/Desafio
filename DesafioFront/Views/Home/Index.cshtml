@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/site.js"></script>
+<script>
+    $(document).ready(function () {
+        
+        function validaCampos(op) {
+            
+            if (op.symbol == '') {
+                alert('Simbolo é obrigatório');
+                return false;
+            }
+                       
+
+            if (op.quantity == '') {
+                alert('Quantidade é obrigatória');
+                return false;
+            }
+
+            if (!$.isNumeric(op.quantity)) {
+                alert('Quantidade deve ser um número válido');
+                return false;
+            }
+
+            if (op.price == '') {
+                alert('Preço é obrigatório');
+                return false;
+            }
+
+            if (!$.isNumeric(op.price)) {
+                alert('Preço deve ser um número válido');
+                return false;
+            }
+
+            return true;
+
+        }
+        $("#btnEnviar").click(function () {
+                        
+            var op = new Object();
+            op.side = $("input[name=side]").filter(":checked").val();
+            op.symbol = $("#symbol").val();            
+            op.quantity = $("#quantity").val().replace(',', '.');
+            op.price = $("#price").val().replace(',','.');
+            
+            if (!validaCampos(op)) return;
+                        
+            $.ajax({
+                url: 'api/rabbit/post',
+                type: "POST",
+                data: JSON.stringify(op),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",  
+                beforeSend: function () {                    
+                    $('#status').html("Enviando...");
+                },
+                success: function finished(response) {
+                    if (response.status) {
+                        $('#status').html("Enviado com sucesso");
+                    } else {
+                        $('#status').html("Erro no envio");
+                    }
+                    
+                    $("#tblOperacoes tbody").append("<tr><td>" + (op.side == "buy" ? "Compra" : "Venda") + "</td><td>" + op.symbol + "</td><td>" + op.quantity + "</td><td>" + op.price + "</td><td>" + (response.status == true ? "Sucesso" : "Erro") + "</td></tr>");
+                    
+
+                },
+                failure: function (response) {                    
+                    $('#status').html("Erro no envio");
+                },
+                error: function (response) {                    
+                    $('#status').html("Erro no envio");
+                    $("#tblOperacoes tbody").append("<tr><td>" + (op.side == "buy" ? "Compra" : "Venda") + "</td><td>" + op.symbol + "</td><td>" + op.quantity + "</td><td>" + op.price + "</td><td>" + (response.status == true ? "Sucesso" : "Erro") + "</td></tr>");
+                }  
+                
+            });
+         });
+        
+    });
+    
+
+</script>
+
+<div id="operacao" style="position:relative;">
+    <input type="radio" name="side" value="buy" checked> Compra
+    <input type="radio" name="side" value="sell"> Venda
+    <br /><br />
+    Simbolo <input type="text" name="symbol" id="symbol" value="VALE3" />
+    <br /><br />
+    Quantidade <input type="text" name="quantity" id="quantity" value="1000" />
+    <br /><br />
+    Preço <input type="text" name="price" id="price" value="48,50"/>
+
+    <input type="button" name="btnEnviar" id="btnEnviar" value="Enviar" /><div id="status"></div>
+</div>
+
+<br />
+<hr />
+
+<table id="tblOperacoes">
+    <thead>
+        <tr>
+            <th>Lado</th>
+            <th>Simbolo</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
