@@ -1,0 +1,10 @@
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\bin\Debug\netcoreapp2.0\DesafioApi.deps.json
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\bin\Debug\netcoreapp2.0\DesafioApi.runtimeconfig.json
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\bin\Debug\netcoreapp2.0\DesafioApi.runtimeconfig.dev.json
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\bin\Debug\netcoreapp2.0\DesafioApi.dll
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\obj\Debug\netcoreapp2.0\DesafioApi.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\obj\Debug\netcoreapp2.0\DesafioApi.AssemblyInfoInputs.cache
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\obj\Debug\netcoreapp2.0\DesafioApi.AssemblyInfo.cs
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\bin\Debug\netcoreapp2.0\DesafioApi.pdb
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\obj\Debug\netcoreapp2.0\DesafioApi.dll
+C:\Users\Daniel\source\repos\DesafioATG\DesafioApi\obj\Debug\netcoreapp2.0\DesafioApi.pdb
